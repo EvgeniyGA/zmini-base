@@ -1,5 +1,5 @@
 # Arty-Z7-20 Base
-**Vivado Version: 2020.2**
+**Vivado Version: 2024.2**
 ------
 Contents: 
 Base project demonstrating access to LEDs and buttons from bare-metal and linux
@@ -14,8 +14,8 @@ Base project demonstrating access to LEDs and buttons from bare-metal and linux
 
 ## Software Requirements
 - Ubuntu 18.04 host system for compilation
-- Vivado/Vitis 2020.2
-- Petalinux 2020.2
+- Vivado/Vitis 2024.2
+- Petalinux 2024.2
 - Terminal program (TeraTerm or minicom)
 
 
