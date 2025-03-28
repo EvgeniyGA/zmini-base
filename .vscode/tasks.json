@@ -1,0 +1,49 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Source",
+            "type": "shell",
+            "group": "none",
+            "command": "source /tools/Xilinx/Vitis/2024.2/settings64.sh",
+            "detail": "Source vivado, vitis, petalinux"
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "detail": "Build project"
+        },
+        {
+            "label": "Build FPGA",
+            "type": "shell",
+            "group": "build",
+            "command": "make fpga",
+            "detail": "Build project fpga"
+        },
+        {
+            "label": "Build Vitis",
+            "type": "shell",
+            "group": "build",
+            "command": "make vitis",
+            "detail": "Build project fpga"
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "group": "build",
+            "command": "make clean",
+            "detail": "Build project"
+        },
+        {
+            "label": "Update BD",
+            "type": "shell",
+            "group": "build",
+            "command": "make update bd",
+            "detail": "Build project"
+        }
+    ]
+}
