@@ -1,4 +1,4 @@
-# Arty-Z7-20 Base
+# Zynq 7000 Base
 **Vivado Version: 2020.2**
 ------
 Contents: 
