@@ -8,7 +8,7 @@ foreach run $runs {
         reset_run $run
 }
 set work_dir [get_property DIRECTORY [current_project]]
-generate_target all -force [get_files ${work_dir}/${project_name}.srcs/sources_1/bd/design_1/design_1.bd]
+generate_target all -force [get_files ${work_dir}/${project_name}.srcs/sources_1/bd/bd/bd.bd]
 update_compile_order -fileset sources_1
 
 set_property AUTO_INCREMENTAL_CHECKPOINT 1 [get_runs synth_1]
@@ -33,4 +33,4 @@ puts "NOTE: You can watch the progress with the following command: \
 wait_on_run impl_1
 
 #file copy -force ${work_dir}/${project_name}.runs/impl_1/design_1_wrapper.sysdef ${work_dir}/../../sw/design_1_wrapper.hdf
-write_hw_platform -fixed -force -include_bit -file ${work_dir}/../../sw/xsa/design_1_wrapper.xsa
+write_hw_platform -fixed -force -include_bit -file ${work_dir}/../../sw/xsa/bd_wrapper.xsa

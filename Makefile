@@ -1,7 +1,7 @@
 include Makefile.inc
 
 BUILD := $(shell pwd)/build
-VIVADO := source /opt/Xilinx/Vivado/$(VERSION)/settings64.sh
+VIVADO := source /tools/Xilinx/Vivado/$(VERSION)/settings64.sh
 
 .PHONY: all
 all: git-init fpga u-boot vitis petalinux
@@ -17,8 +17,8 @@ u-boot:
 
 .PHONY: vitis
 vitis:
-	$(MAKE) -C sw/vitis/bare_metal
-	$(MAKE) -C sw/vitis/free_rtos
+	$(MAKE) -C sw/vitis/hello_world
+#	$(MAKE) -C sw/vitis/free_rtos
 
 .PHONY: fpga
 fpga:
@@ -45,4 +45,15 @@ clean-sw:
 .PHONY: git-init
 git-init:
 	git submodule update --init --recursive
+	
+.PHONY: install_board_files
+install_board_files: 
+	sudo cp -r hw/source/misc/board_files /tools/Xilinx/Vivado/$(VERSION)/data/boards
+
+.PHONY: update-bd
+update-bd:
+	$(MAKE) -C hw update-bd
+
+# todo
+# write_bd_tcl [get_property DIRECTORY [current_project]]/../source/scripts/bd.tcl -include_layout -force
 

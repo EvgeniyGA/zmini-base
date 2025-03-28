@@ -1,2 +1,2 @@
-VERSION := 2020.2
+VERSION := 2024.2
 NAME := project_1

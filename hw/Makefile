@@ -1,5 +1,5 @@
 include ../Makefile.inc
-VIVADO := /opt/Xilinx/Vivado/$(VERSION)/bin
+VIVADO := /tools/Xilinx/Vivado/$(VERSION)/bin
 BUILD := $(shell pwd)/build
 VIVADO_BIN := $(VIVADO)/vivado
 VIVADO_CMD := cd $(BUILD) && $(VIVADO_BIN) -nolog -nojournal -mode batch -source
@@ -62,3 +62,8 @@ clean:
 	@echo "Deleting contents of the build directory"
 	@rm -rf $(BUILD) *.str *.jou *.log .Xil
 	@mkdir -p $(BUILD)
+	
+.PHONY: update-bd
+update-bd:
+	@echo "Updataing block design in source"
+	@$(VIVADO_CMD) $(SCRIPTS)/update_bd.tcl

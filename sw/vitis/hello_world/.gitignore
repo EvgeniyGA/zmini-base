@@ -1,0 +1,5 @@
+Packages/
+.Xil/
+build/
+ws/
+*.spec
