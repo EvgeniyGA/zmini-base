@@ -1,4 +1,4 @@
-# Arty-Z7-20 Base
+# Zynq-MINI-20 Base
 **Vivado Version: 2024.2**
 ------
 Contents: 
