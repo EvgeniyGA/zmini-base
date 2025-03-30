@@ -1,5 +1,5 @@
 VERSION ?= 2024.2
-PETALINUX := source /opt/Xilinx/petalinux/$(VERSION)/settings.sh &&
+PETALINUX := source /tools/Xilinx/PetaLinux/$(VERSION)/settings.sh &&
 DISTDIR := $(shell pwd)/../../build/petalinux
 
 .PHONY: all

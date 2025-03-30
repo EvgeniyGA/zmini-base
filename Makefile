@@ -4,7 +4,8 @@ BUILD := $(shell pwd)/build
 VIVADO := source /tools/Xilinx/Vivado/$(VERSION)/settings64.sh
 
 .PHONY: all
-all: git-init fpga u-boot vitis petalinux
+all: fpga vitis petalinux
+#all: git-init fpga u-boot vitis petalinux
 
 .PHONY: petalinux
 petalinux:

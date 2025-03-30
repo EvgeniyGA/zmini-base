@@ -1,2 +1,5 @@
 build/
 /sw/xsa
+/sw/petalinux/project-spec/configs/.Xil
+/sw/petalinux/.Xil
+*.old
