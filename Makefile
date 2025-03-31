@@ -36,10 +36,10 @@ clean-hw:
 
 .PHONY: clean-sw
 clean-sw:
-	$(MAKE) -C sw/vitis/bare_metal clean
-	$(MAKE) -C sw/vitis/free_rtos clean
+	$(MAKE) -C sw/vitis/hello_world clean
+#	$(MAKE) -C sw/vitis/free_rtos clean
 	$(MAKE) -C sw/petalinux clean
-	$(VIVADO) && $(MAKE) -C sw/u-boot-xlnx distclean
+#	$(VIVADO) && $(MAKE) -C sw/u-boot-xlnx distclean
 	rm -rf $(BUILD)/vitis/*
 	rm -rf $(BUILD)/petalinux/*
 
