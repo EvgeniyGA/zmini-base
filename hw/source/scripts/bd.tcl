@@ -49,7 +49,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xc7z020clg400-2
+   create_project project_1 myproj -part xc7z020clg400-1
 }
 
 
@@ -132,6 +132,7 @@ if { $bCheckIPs == 1 } {
 xilinx.com:ip:processing_system7:5.5\
 xilinx.com:ip:axi_gpio:2.0\
 xilinx.com:ip:proc_sys_reset:5.0\
+xilinx.com:ip:xlconcat:2.1\
 "
 
    set list_ips_missing ""
@@ -199,10 +200,10 @@ proc create_root_design { parentCell } {
 
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
-  set gpio_led [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 gpio_led ]
-
 
   # Create ports
+  set led [ create_bd_port -dir O -from 3 -to 0 led ]
+  set btn [ create_bd_port -dir I -from 1 -to 0 btn ]
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
@@ -254,6 +255,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_GPIO_MIO_GPIO_ENABLE {1} \
     CONFIG.PCW_GPIO_MIO_GPIO_IO {MIO} \
     CONFIG.PCW_I2C_RESET_ENABLE {0} \
+    CONFIG.PCW_IRQ_F2P_INTR {1} \
     CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 3.3V} \
     CONFIG.PCW_MIO_0_PULLUP {enabled} \
     CONFIG.PCW_MIO_0_SLEW {slow} \
@@ -446,6 +448,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_USB0_USB0_IO {MIO 28 .. 39} \
     CONFIG.PCW_USB_RESET_ENABLE {1} \
     CONFIG.PCW_USB_RESET_SELECT {Share reset pin} \
+    CONFIG.PCW_USE_FABRIC_INTERRUPT {1} \
   ] $processing_system7_0
 
 
@@ -462,31 +465,55 @@ proc create_root_design { parentCell } {
 
   # Create instance: axi_interconnect_0, and set properties
   set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
-  set_property CONFIG.NUM_MI {1} $axi_interconnect_0
+  set_property CONFIG.NUM_MI {2} $axi_interconnect_0
 
+
+  # Create instance: axi_gpio_1, and set properties
+  set axi_gpio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_1 ]
+  set_property -dict [list \
+    CONFIG.C_ALL_INPUTS {1} \
+    CONFIG.C_GPIO_WIDTH {2} \
+    CONFIG.C_INTERRUPT_PRESENT {1} \
+  ] $axi_gpio_1
+
+
+  # Create instance: xlconcat_0, and set properties
+  set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports gpio_led] [get_bd_intf_pins axi_gpio_0/GPIO]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
+  connect_bd_intf_net -intf_net axi_interconnect_0_M01_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins axi_interconnect_0/M01_AXI]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
 
   # Create port connections
+  connect_bd_net -net axi_gpio_0_gpio_io_o  [get_bd_pins axi_gpio_0/gpio_io_o] \
+  [get_bd_ports led]
+  connect_bd_net -net axi_gpio_1_ip2intc_irpt  [get_bd_pins axi_gpio_1/ip2intc_irpt] \
+  [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net gpio_io_i_0_1  [get_bd_ports btn] \
+  [get_bd_pins axi_gpio_1/gpio_io_i]
   connect_bd_net -net processing_system7_0_FCLK_CLK0  [get_bd_pins processing_system7_0/FCLK_CLK0] \
   [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] \
   [get_bd_pins axi_gpio_0/s_axi_aclk] \
   [get_bd_pins rst_ps7_0_100M/slowest_sync_clk] \
   [get_bd_pins axi_interconnect_0/ACLK] \
   [get_bd_pins axi_interconnect_0/S00_ACLK] \
-  [get_bd_pins axi_interconnect_0/M00_ACLK]
+  [get_bd_pins axi_interconnect_0/M00_ACLK] \
+  [get_bd_pins axi_gpio_1/s_axi_aclk] \
+  [get_bd_pins axi_interconnect_0/M01_ACLK]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N  [get_bd_pins processing_system7_0/FCLK_RESET0_N] \
   [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn  [get_bd_pins rst_ps7_0_100M/peripheral_aresetn] \
   [get_bd_pins axi_gpio_0/s_axi_aresetn] \
   [get_bd_pins axi_interconnect_0/S00_ARESETN] \
   [get_bd_pins axi_interconnect_0/M00_ARESETN] \
-  [get_bd_pins axi_interconnect_0/ARESETN]
+  [get_bd_pins axi_interconnect_0/ARESETN] \
+  [get_bd_pins axi_gpio_1/s_axi_aresetn] \
+  [get_bd_pins axi_interconnect_0/M01_ARESETN]
+  connect_bd_net -net xlconcat_0_dout  [get_bd_pins xlconcat_0/dout] \
+  [get_bd_pins processing_system7_0/IRQ_F2P]
 
   # Create address segments
   assign_bd_address -offset 0x41200000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] -force
