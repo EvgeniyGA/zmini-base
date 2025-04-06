@@ -3,8 +3,8 @@
 ------
 Contents: 
 Base project demonstrating access to LEDs and buttons from bare-metal and linux
-- Vitis: Bare Metal Register/Driver access
-- Vitis: FreeRTOS demonstration
+- Vi12er/Driver access
+- Vitis: FreeRTOS demonstrqwer
 - Linux: GPIO-Keys with device tree
 
 ## Hardware Requirements:
