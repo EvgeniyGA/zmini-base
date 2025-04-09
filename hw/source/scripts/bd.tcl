@@ -226,7 +226,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
     CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
     CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
-    CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {148.148163} \
+    CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {142.857132} \
     CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
     CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
     CONFIG.PCW_ACT_PCAP_PERIPHERAL_FREQMHZ {200.000000} \
@@ -244,7 +244,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_ACT_UART_PERIPHERAL_FREQMHZ {100.000000} \
     CONFIG.PCW_ACT_WDT_PERIPHERAL_FREQMHZ {111.111115} \
     CONFIG.PCW_CLK0_FREQ {100000000} \
-    CONFIG.PCW_CLK1_FREQ {148148163} \
+    CONFIG.PCW_CLK1_FREQ {142857132} \
     CONFIG.PCW_CLK2_FREQ {10000000} \
     CONFIG.PCW_CLK3_FREQ {10000000} \
     CONFIG.PCW_DDR_RAM_HIGHADDR {0x1FFFFFFF} \
@@ -267,10 +267,10 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_EN_TTC0 {1} \
     CONFIG.PCW_EN_UART1 {1} \
     CONFIG.PCW_EN_USB0 {1} \
-    CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {ARM PLL} \
+    CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {IO PLL} \
     CONFIG.PCW_FCLK_CLK1_BUF {TRUE} \
     CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
-    CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {148.5} \
+    CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {140} \
     CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
     CONFIG.PCW_FPGA_FCLK1_ENABLE {1} \
     CONFIG.PCW_GPIO_MIO_GPIO_ENABLE {1} \
@@ -702,11 +702,83 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs v_tc_0/ctrl/Reg] -force
   assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
 
+  # Perform GUI Layout
+  regenerate_bd_layout -layout_string {
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.789728",
+   "Default View_TopLeft":"676,714",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 9 -x 3080 -y 730 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 9 -x 3080 -y 760 -defaultsOSRD
+preplace port TMDS -pg 1 -lvl 9 -x 3080 -y 130 -defaultsOSRD
+preplace port HDMI_DDC -pg 1 -lvl 9 -x 3080 -y 790 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 9 -x 3080 -y 370 -defaultsOSRD
+preplace portBus btn -pg 1 -lvl 0 -x -10 -y 1510 -defaultsOSRD
+preplace portBus HDMI_EN -pg 1 -lvl 9 -x 3080 -y 850 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 3 -x 1000 -y 850 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 8 -x 2920 -y 360 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 3 -x 1000 -y 1150 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 4 -x 1440 -y 470 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 5 -x 1850 -y 1360 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -x 590 -y 1110 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 8 -x 2920 -y 130 -defaultsOSRD
+preplace inst axi_dynclk_0 -pg 1 -lvl 5 -x 1850 -y 250 -defaultsOSRD
+preplace inst v_tc_0 -pg 1 -lvl 6 -x 2260 -y 160 -defaultsOSRD
+preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 7 -x 2610 -y 170 -defaultsOSRD
+preplace inst axis_subset_converter_0 -pg 1 -lvl 6 -x 2260 -y 640 -defaultsOSRD
+preplace inst axi_vdma_0 -pg 1 -lvl 5 -x 1850 -y 630 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 200 -y 1340 -defaultsOSRD
+preplace inst axi_interconnect_1 -pg 1 -lvl 2 -x 590 -y 1380 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 5 -x 1850 -y 1500 -defaultsOSRD
+preplace inst axi_gpio_hdmi -pg 1 -lvl 5 -x 1850 -y 420 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 8 -x 2920 -y 850 -defaultsOSRD
+preplace netloc ARESETN_1 1 3 1 1270 350n
+preplace netloc axi_dynclk_0_LOCKED_O 1 5 3 2090J 310 2430J 30 2770
+preplace netloc axi_dynclk_0_PXL_CLK_5X_O 1 5 3 2080J 330 NJ 330 2760
+preplace netloc axi_dynclk_0_PXL_CLK_O 1 5 3 2060 320 2420 20 2780J
+preplace netloc axi_gpio_0_gpio_io_o 1 8 1 NJ 370
+preplace netloc axi_gpio_1_ip2intc_irpt 1 1 5 440 1020 NJ 1020 NJ 1020 NJ 1020 2040
+preplace netloc axi_gpio_2_ip2intc_irpt 1 1 5 420 680 NJ 680 1260J 690 1660J 530 2040
+preplace netloc axi_vdma_0_mm2s_introut 1 1 5 410 670 NJ 670 1250J 750 NJ 750 2040
+preplace netloc gpio_io_i_0_1 1 0 6 NJ 1510 NJ 1510 780J 1440 NJ 1440 NJ 1440 2030
+preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 1 N 1360
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 1 380 1380n
+preplace netloc processing_system7_0_FCLK_CLK0 1 2 6 780 1030 1230 250 1650 140 2100 360 NJ 360 NJ
+preplace netloc processing_system7_0_FCLK_CLK1 1 0 7 20 1240 390 1000 770 1010 1280 760 1670 760 2090 350 2460
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 4 10 1010 NJ 1010 750 1040 1220
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 3 5 1290 740 1630 160 2070 380 NJ 380 NJ
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 5 3 2110 10 NJ 10 2760
+preplace netloc v_tc_0_irq 1 1 6 430 690 NJ 690 1240J 700 1640J 740 NJ 740 2410
+preplace netloc xlconcat_0_dout 1 2 1 760 890n
+preplace netloc xlconstant_0_dout 1 5 1 2100J 660n
+preplace netloc xlconstant_1_dout 1 8 1 NJ 850
+preplace netloc axi_interconnect_0_M00_AXI 1 4 4 1610 340 NJ 340 NJ 340 NJ
+preplace netloc axi_interconnect_0_M01_AXI 1 4 1 1610 440n
+preplace netloc axi_interconnect_0_M02_AXI 1 4 1 1600 220n
+preplace netloc axi_interconnect_0_M03_AXI 1 4 1 1640 480n
+preplace netloc axi_interconnect_0_M04_AXI 1 4 2 1590J 130 2050
+preplace netloc axi_interconnect_0_M05_AXI 1 4 1 1660 400n
+preplace netloc axi_interconnect_1_M00_AXI 1 2 1 740 830n
+preplace netloc axi_vdma_0_M_AXIS_MM2S 1 5 1 N 620
+preplace netloc axi_vdma_0_M_AXI_MM2S 1 1 5 400 150 NJ 150 NJ 150 NJ 150 2050
+preplace netloc axis_subset_converter_0_M_AXIS 1 6 1 2450 90n
+preplace netloc processing_system7_0_DDR 1 3 6 1240J 730 NJ 730 NJ 730 NJ 730 NJ 730 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 3 6 NJ 770 NJ 770 2110J 760 NJ 760 NJ 760 NJ
+preplace netloc processing_system7_0_IIC_0 1 3 6 NJ 790 NJ 790 NJ 790 NJ 790 NJ 790 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 3 1 1220 310n
+preplace netloc rgb2dvi_0_TMDS 1 8 1 NJ 130
+preplace netloc v_axi4s_vid_out_0_vid_io_out 1 7 1 N 100
+preplace netloc v_tc_0_vtiming_out 1 6 1 2440 110n
+levelinfo -pg 1 -10 200 590 1000 1440 1850 2260 2610 2920 3080
+pagesize -pg 1 -db -bbox -sgen -120 0 3230 1560
+"
+}
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
-  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()
@@ -718,4 +790,6 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
+
+common::send_gid_msg -ssname BD::TCL -id 2053 -severity "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
