@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 VERSION ?= 2024.2
 PETALINUX := source /tools/Xilinx/PetaLinux/$(VERSION)/settings.sh &&
 DISTDIR := $(shell pwd)/../../build/petalinux
