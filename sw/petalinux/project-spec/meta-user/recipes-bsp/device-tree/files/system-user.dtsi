@@ -1,12 +1,12 @@
 /include/ "system-conf.dtsi"
-//#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/gpio/gpio.h>
 /* #include </home/rich/petalinux20242/rehsdZynq/xilinx-vip.h> */ /*this doesn't work!?*/
 / {
     model = "rehsd Zynq-7000 Board";
     compatible = "rehsd,zynq-7000", "xlnx,zynq-7000";
-//    chosen {
-//        bootargs = "console=ttyPS1,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio";
-//    };
+    chosen {
+        bootargs = "console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 ro earlyprintk uio_pdrv_genirq.of_id=generic-uio";
+    };
     usb_phy0: usb_phy@0 {
         compatible = "ulpi-phy";
         #phy-cells = <0>;
@@ -59,8 +59,8 @@
         dmas = <&axi_vdma_0 0>; 
         dma-names = "dma0"; 
         /* xlnx,vtc = <&v_tc_0>; */
-        /* dglnt,edid-i2c = <&i2c1 >; */
-        xlnx,vformat = "XR24";
+        /* dglnt,edid-i2c = <&i2c0 >; */
+        xlnx,vformat = "RG24";
         xlnx,bridge = <&v_tc_0>; 
         port@0 { 
             pl_disp_ep: endpoint { 
