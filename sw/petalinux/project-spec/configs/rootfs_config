@@ -15,7 +15,7 @@ CONFIG_system-zynq=y
 #
 # sudo 
 #
-# CONFIG_sudo is not set
+CONFIG_sudo=y
 # CONFIG_sudo-dbg is not set
 # CONFIG_sudo-dev is not set
 
@@ -2192,7 +2192,7 @@ CONFIG_linux-xlnx-udev-rules=y
 #
 # gcc-runtime 
 #
-# CONFIG_libstdcPLUSPLUS is not set
+CONFIG_libstdcPLUSPLUS=y
 # CONFIG_libstdcPLUSPLUS-dev is not set
 
 #
@@ -2233,10 +2233,10 @@ CONFIG_linux-xlnx-udev-rules=y
 #
 # glibc 
 #
-# CONFIG_glibc is not set
+CONFIG_glibc=y
 # CONFIG_glibc-dev is not set
 # CONFIG_glibc-dbg is not set
-# CONFIG_ldd is not set
+CONFIG_ldd=y
 
 #
 # gnome-desktop-testing 
@@ -2468,7 +2468,7 @@ CONFIG_packagegroup-core-boot=y
 #
 # packagegroup-core-buildessential 
 #
-# CONFIG_packagegroup-core-buildessential is not set
+CONFIG_packagegroup-core-buildessential=y
 # CONFIG_packagegroup-core-buildessential-dev is not set
 # CONFIG_packagegroup-core-buildessential-dbg is not set
 
@@ -3719,7 +3719,7 @@ CONFIG_libdrm-tests=y
 #
 # packagegroup-networking-stack 
 #
-# CONFIG_packagegroup-networking-stack is not set
+CONFIG_packagegroup-networking-stack=y
 # CONFIG_packagegroup-networking-stack-dbg is not set
 # CONFIG_packagegroup-networking-stack-dev is not set
 
