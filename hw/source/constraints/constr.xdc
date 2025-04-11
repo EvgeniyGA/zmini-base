@@ -11,7 +11,7 @@ set_property -dict {PACKAGE_PIN A20 IOSTANDARD TMDS_33} [get_ports {TMDS_data_n[
 set_property -dict {PACKAGE_PIN B19 IOSTANDARD TMDS_33} [get_ports {TMDS_data_p[2]}]
 
 #HPD
-#set_property -dict {PACKAGE_PIN H18 IOSTANDARD LVCMOS33} [get_ports {HDMI_HPD_tri_i[0]}]
+set_property -dict {PACKAGE_PIN U15 IOSTANDARD LVCMOS33} [get_ports {HDMI_HPD_tri_i[0]}]
 set_property -dict {PACKAGE_PIN H18 IOSTANDARD LVCMOS33} [get_ports HDMI_EN]
 
 #I2C
