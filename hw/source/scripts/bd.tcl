@@ -211,6 +211,8 @@ proc create_root_design { parentCell } {
 
   set HDMI_DDC [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 HDMI_DDC ]
 
+  set HDMI_HPD [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 HDMI_HPD ]
+
 
   # Create ports
   set led [ create_bd_port -dir O -from 3 -to 0 led ]
@@ -544,7 +546,7 @@ proc create_root_design { parentCell } {
     CONFIG.M_HAS_TLAST {1} \
     CONFIG.M_HAS_TREADY {1} \
     CONFIG.M_HAS_TSTRB {0} \
-    CONFIG.M_TDATA_NUM_BYTES {4} \
+    CONFIG.M_TDATA_NUM_BYTES {3} \
     CONFIG.M_TDEST_WIDTH {0} \
     CONFIG.M_TID_WIDTH {0} \
     CONFIG.M_TUSER_WIDTH {1} \
@@ -565,7 +567,8 @@ proc create_root_design { parentCell } {
     CONFIG.c_include_s2mm {0} \
     CONFIG.c_m_axis_mm2s_tdata_width {24} \
     CONFIG.c_mm2s_genlock_mode {0} \
-    CONFIG.c_num_fstores {4} \
+    CONFIG.c_mm2s_max_burst_length {16} \
+    CONFIG.c_num_fstores {3} \
   ] $axi_vdma_0
 
 
@@ -593,6 +596,7 @@ proc create_root_design { parentCell } {
   set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
 
   # Create interface connections
+  connect_bd_intf_net -intf_net axi_gpio_hdmi_GPIO [get_bd_intf_ports HDMI_HPD] [get_bd_intf_pins axi_gpio_hdmi/GPIO]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M01_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins axi_interconnect_0/M01_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M02_AXI [get_bd_intf_pins axi_interconnect_0/M02_AXI] [get_bd_intf_pins axi_dynclk_0/S_AXI_LITE]
@@ -705,39 +709,40 @@ proc create_root_design { parentCell } {
   # Perform GUI Layout
   regenerate_bd_layout -layout_string {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.789728",
-   "Default View_TopLeft":"676,714",
+   "Default View_ScaleFactor":"0.789729",
+   "Default View_TopLeft":"2348,333",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 9 -x 3080 -y 730 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 9 -x 3080 -y 760 -defaultsOSRD
-preplace port TMDS -pg 1 -lvl 9 -x 3080 -y 130 -defaultsOSRD
-preplace port HDMI_DDC -pg 1 -lvl 9 -x 3080 -y 790 -defaultsOSRD
-preplace portBus led -pg 1 -lvl 9 -x 3080 -y 370 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 9 -x 3120 -y 730 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 9 -x 3120 -y 760 -defaultsOSRD
+preplace port TMDS -pg 1 -lvl 9 -x 3120 -y 130 -defaultsOSRD
+preplace port HDMI_DDC -pg 1 -lvl 9 -x 3120 -y 790 -defaultsOSRD
+preplace port HDMI_HPD -pg 1 -lvl 9 -x 3120 -y 410 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 9 -x 3120 -y 370 -defaultsOSRD
 preplace portBus btn -pg 1 -lvl 0 -x -10 -y 1510 -defaultsOSRD
-preplace portBus HDMI_EN -pg 1 -lvl 9 -x 3080 -y 850 -defaultsOSRD
+preplace portBus HDMI_EN -pg 1 -lvl 9 -x 3120 -y 850 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 3 -x 1000 -y 850 -defaultsOSRD
-preplace inst axi_gpio_0 -pg 1 -lvl 8 -x 2920 -y 360 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 8 -x 2960 -y 360 -defaultsOSRD
 preplace inst rst_ps7_0_100M -pg 1 -lvl 3 -x 1000 -y 1150 -defaultsOSRD
 preplace inst axi_interconnect_0 -pg 1 -lvl 4 -x 1440 -y 470 -defaultsOSRD
 preplace inst axi_gpio_1 -pg 1 -lvl 5 -x 1850 -y 1360 -defaultsOSRD
 preplace inst xlconcat_0 -pg 1 -lvl 2 -x 590 -y 1110 -defaultsOSRD
-preplace inst rgb2dvi_0 -pg 1 -lvl 8 -x 2920 -y 130 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 8 -x 2960 -y 130 -defaultsOSRD
 preplace inst axi_dynclk_0 -pg 1 -lvl 5 -x 1850 -y 250 -defaultsOSRD
 preplace inst v_tc_0 -pg 1 -lvl 6 -x 2260 -y 160 -defaultsOSRD
-preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 7 -x 2610 -y 170 -defaultsOSRD
+preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 7 -x 2630 -y 170 -defaultsOSRD
 preplace inst axis_subset_converter_0 -pg 1 -lvl 6 -x 2260 -y 640 -defaultsOSRD
 preplace inst axi_vdma_0 -pg 1 -lvl 5 -x 1850 -y 630 -defaultsOSRD
 preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 200 -y 1340 -defaultsOSRD
 preplace inst axi_interconnect_1 -pg 1 -lvl 2 -x 590 -y 1380 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 5 -x 1850 -y 1500 -defaultsOSRD
 preplace inst axi_gpio_hdmi -pg 1 -lvl 5 -x 1850 -y 420 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 8 -x 2920 -y 850 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 8 -x 2960 -y 850 -defaultsOSRD
 preplace netloc ARESETN_1 1 3 1 1270 350n
-preplace netloc axi_dynclk_0_LOCKED_O 1 5 3 2090J 310 2430J 30 2770
-preplace netloc axi_dynclk_0_PXL_CLK_5X_O 1 5 3 2080J 330 NJ 330 2760
-preplace netloc axi_dynclk_0_PXL_CLK_O 1 5 3 2060 320 2420 20 2780J
+preplace netloc axi_dynclk_0_LOCKED_O 1 5 3 2090J 310 2450J 30 2790
+preplace netloc axi_dynclk_0_PXL_CLK_5X_O 1 5 3 2080J 330 NJ 330 2780
+preplace netloc axi_dynclk_0_PXL_CLK_O 1 5 3 2060 320 2440 20 2800J
 preplace netloc axi_gpio_0_gpio_io_o 1 8 1 NJ 370
 preplace netloc axi_gpio_1_ip2intc_irpt 1 1 5 440 1020 NJ 1020 NJ 1020 NJ 1020 2040
 preplace netloc axi_gpio_2_ip2intc_irpt 1 1 5 420 680 NJ 680 1260J 690 1660J 530 2040
@@ -746,10 +751,10 @@ preplace netloc gpio_io_i_0_1 1 0 6 NJ 1510 NJ 1510 780J 1440 NJ 1440 NJ 1440 20
 preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 1 N 1360
 preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 1 380 1380n
 preplace netloc processing_system7_0_FCLK_CLK0 1 2 6 780 1030 1230 250 1650 140 2100 360 NJ 360 NJ
-preplace netloc processing_system7_0_FCLK_CLK1 1 0 7 20 1240 390 1000 770 1010 1280 760 1670 760 2090 350 2460
+preplace netloc processing_system7_0_FCLK_CLK1 1 0 7 20 1240 390 1000 770 1010 1280 760 1670 760 2090 350 2480
 preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 4 10 1010 NJ 1010 750 1040 1220
 preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 3 5 1290 740 1630 160 2070 380 NJ 380 NJ
-preplace netloc v_axi4s_vid_out_0_vtg_ce 1 5 3 2110 10 NJ 10 2760
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 5 3 2110 10 NJ 10 2780
 preplace netloc v_tc_0_irq 1 1 6 430 690 NJ 690 1240J 700 1640J 740 NJ 740 2410
 preplace netloc xlconcat_0_dout 1 2 1 760 890n
 preplace netloc xlconstant_0_dout 1 5 1 2100J 660n
@@ -763,16 +768,17 @@ preplace netloc axi_interconnect_0_M05_AXI 1 4 1 1660 400n
 preplace netloc axi_interconnect_1_M00_AXI 1 2 1 740 830n
 preplace netloc axi_vdma_0_M_AXIS_MM2S 1 5 1 N 620
 preplace netloc axi_vdma_0_M_AXI_MM2S 1 1 5 400 150 NJ 150 NJ 150 NJ 150 2050
-preplace netloc axis_subset_converter_0_M_AXIS 1 6 1 2450 90n
+preplace netloc axis_subset_converter_0_M_AXIS 1 6 1 2470 90n
 preplace netloc processing_system7_0_DDR 1 3 6 1240J 730 NJ 730 NJ 730 NJ 730 NJ 730 NJ
 preplace netloc processing_system7_0_FIXED_IO 1 3 6 NJ 770 NJ 770 2110J 760 NJ 760 NJ 760 NJ
 preplace netloc processing_system7_0_IIC_0 1 3 6 NJ 790 NJ 790 NJ 790 NJ 790 NJ 790 NJ
 preplace netloc processing_system7_0_M_AXI_GP0 1 3 1 1220 310n
 preplace netloc rgb2dvi_0_TMDS 1 8 1 NJ 130
 preplace netloc v_axi4s_vid_out_0_vid_io_out 1 7 1 N 100
-preplace netloc v_tc_0_vtiming_out 1 6 1 2440 110n
-levelinfo -pg 1 -10 200 590 1000 1440 1850 2260 2610 2920 3080
-pagesize -pg 1 -db -bbox -sgen -120 0 3230 1560
+preplace netloc v_tc_0_vtiming_out 1 6 1 2460 110n
+preplace netloc axi_gpio_hdmi_GPIO 1 5 4 NJ 410 NJ 410 2800J 440 3100J
+levelinfo -pg 1 -10 200 590 1000 1440 1850 2260 2630 2960 3120
+pagesize -pg 1 -db -bbox -sgen -120 0 3350 1560
 "
 }
 
