@@ -3771,6 +3771,7 @@ CONFIG_Init-manager-sysvinit=y
 #
 CONFIG_clk-dglnt-dynclk=y
 CONFIG_digilent-hdmi=y
+CONFIG_flash-led=y
 CONFIG_gpio-demo=y
 # CONFIG_peekpoke is not set
 
