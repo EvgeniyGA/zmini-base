@@ -8,3 +8,4 @@ CONFIG_digilent-hdmi
 CONFIG_flash-led
 CONFIG_fbtest
 CONFIG_nano
+CONFIG_gpm
