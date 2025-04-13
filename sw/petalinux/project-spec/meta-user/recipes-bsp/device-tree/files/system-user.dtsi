@@ -41,6 +41,20 @@
     clock-frequency = <100000>;
     status = "okay";
 };
+
+&i2c1 {
+	status = "okay";
+	pcf8563: pcf8563@51 {
+		compatible = "nxp,pcf8563";
+		reg = <0x51>;
+		#clock-cells = <0>;
+	};
+	/* ds3231: rtc@68 {
+		compatible = "maxim,ds3231";
+		reg = <0x68>;
+	}; */
+};
+
 &amba_pl {
     digilent_hdmi {
         compatible = "digilent,hdmi";
