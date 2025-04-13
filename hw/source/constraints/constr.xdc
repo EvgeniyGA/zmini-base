@@ -19,8 +19,8 @@ set_property -dict {PACKAGE_PIN N20 IOSTANDARD LVCMOS33} [get_ports HDMI_DDC_scl
 set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports HDMI_DDC_sda_io]
 
 #I2C1
-set_property -dict {PACKAGE_PIN N20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_scl_io]
-set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_sda_io]
+set_property -dict {PACKAGE_PIN N18 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_scl_io]
+set_property -dict {PACKAGE_PIN T20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_sda_io]
 
 #Onboard PL LED
 set_property -dict {PACKAGE_PIN W13 IOSTANDARD LVCMOS33} [get_ports {led[0]}]
