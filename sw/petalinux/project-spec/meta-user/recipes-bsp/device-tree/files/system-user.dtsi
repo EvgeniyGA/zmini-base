@@ -60,10 +60,14 @@
 	num-cs = <3>;
 	bus-num = <0>;
 	status = "okay";
-	spidev@0x00 {
-		compatible = "spidev";
-		spi-max-frequency = <1000000>;
+        display@0{
+		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
 		reg = <0>;
+		spi-max-frequency = <32000000>;
+		dc-gpios = <&axi_gpio_lcd_dc 0 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&axi_gpio_lcd_reset 0 GPIO_ACTIVE_HIGH>;
+		rotation = <270>;
+		backlight = <&axi_gpio_lcd_led>;
 	};
 	spidev@0x01 {
 		//compatible = "spidev";
