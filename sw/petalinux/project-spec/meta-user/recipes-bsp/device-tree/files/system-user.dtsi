@@ -67,7 +67,7 @@
 		dc-gpios = <&axi_gpio_lcd_dc 0 GPIO_ACTIVE_HIGH>;
 		reset-gpios = <&axi_gpio_lcd_reset 0 GPIO_ACTIVE_HIGH>;
 		rotation = <270>;
-		backlight = <&axi_gpio_lcd_led>;
+		/*backlight = <&axi_gpio_lcd_led>;*/
 	};
 	spidev@0x01 {
 		//compatible = "spidev";
@@ -115,6 +115,16 @@
             }; 
         };
     };
+    //https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/leds-gpio.txt
+    leds {
+        compatible = "gpio-leds";
+        lcd_led {
+            label = "lcd_led";
+            gpios = <&axi_gpio_lcd_led 0 0 0>;
+            default-state = "on";
+        };
+    };
+
 };
 &axi_vdma_0 {
     dma-ranges = <0x00000000 0x00000000 0x40000000>;
