@@ -260,5 +260,6 @@ CONFIG_YOCTO_NETWORK_SSTATE_FEEDS_URL="https://petalinux.xilinx.com/sswreleases/
 #
 # User Layers
 #
-CONFIG_USER_LAYER_0=""
+CONFIG_USER_LAYER_0="${PROOT}/project-spec/meta-openembedded/meta-python"
+CONFIG_USER_LAYER_1=""
 CONFIG_SUBSYSTEM_BOOTARGS_GENERATED="console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 ro rootwait"
