@@ -15,7 +15,7 @@ CONFIG_system-zynq=y
 #
 # sudo 
 #
-# CONFIG_sudo is not set
+CONFIG_sudo=y
 # CONFIG_sudo-dbg is not set
 # CONFIG_sudo-dev is not set
 
@@ -972,7 +972,7 @@ CONFIG_pciutils=y
 #
 # python3-numpy 
 #
-# CONFIG_python3-numpy is not set
+CONFIG_python3-numpy=y
 # CONFIG_python3-numpy-dev is not set
 # CONFIG_python3-numpy-dbg is not set
 
@@ -1395,9 +1395,9 @@ CONFIG_run-postinsts=y
 #
 # libgpiod
 #
-# CONFIG_libgpiod is not set
-# CONFIG_libgpiod-dev is not set
-# CONFIG_libgpiod-dbg is not set
+CONFIG_libgpiod=y
+CONFIG_libgpiod-dev=y
+CONFIG_libgpiod-dbg=y
 
 #
 # libgudev 
@@ -2192,7 +2192,7 @@ CONFIG_linux-xlnx-udev-rules=y
 #
 # gcc-runtime 
 #
-# CONFIG_libstdcPLUSPLUS is not set
+CONFIG_libstdcPLUSPLUS=y
 # CONFIG_libstdcPLUSPLUS-dev is not set
 
 #
@@ -2233,10 +2233,10 @@ CONFIG_linux-xlnx-udev-rules=y
 #
 # glibc 
 #
-# CONFIG_glibc is not set
+CONFIG_glibc=y
 # CONFIG_glibc-dev is not set
 # CONFIG_glibc-dbg is not set
-# CONFIG_ldd is not set
+CONFIG_ldd=y
 
 #
 # gnome-desktop-testing 
@@ -2468,7 +2468,7 @@ CONFIG_packagegroup-core-boot=y
 #
 # packagegroup-core-buildessential 
 #
-# CONFIG_packagegroup-core-buildessential is not set
+CONFIG_packagegroup-core-buildessential=y
 # CONFIG_packagegroup-core-buildessential-dev is not set
 # CONFIG_packagegroup-core-buildessential-dbg is not set
 
@@ -2586,7 +2586,7 @@ CONFIG_packagegroup-core-boot=y
 #
 # python3 
 #
-# CONFIG_python3 is not set
+CONFIG_python3=y
 # CONFIG_python3-smtpd is not set
 # CONFIG_python3-syslog is not set
 # CONFIG_python3-pickle is not set
@@ -2625,14 +2625,14 @@ CONFIG_packagegroup-core-boot=y
 # CONFIG_python3-2to3 is not set
 # CONFIG_libpython3 is not set
 # CONFIG_python3-xml is not set
-# CONFIG_python3-threading is not set
+CONFIG_python3-threading=y
 # CONFIG_python3-modules is not set
 # CONFIG_python3-dev is not set
 # CONFIG_python3-curses is not set
-# CONFIG_python3-multiprocessing is not set
+CONFIG_python3-multiprocessing=y
 # CONFIG_python3-crypt is not set
 # CONFIG_python3-compression is not set
-# CONFIG_python3-shell is not set
+CONFIG_python3-shell=y
 # CONFIG_python3-tests is not set
 # CONFIG_python3-numbers is not set
 # CONFIG_python3-audio is not set
@@ -3351,14 +3351,14 @@ CONFIG_u-boot-tools=y
 #
 # libdrm 
 #
-# CONFIG_libdrm is not set
+CONFIG_libdrm=y
 # CONFIG_libdrm-omap is not set
 # CONFIG_libdrm-amdgpu is not set
 # CONFIG_libdrm-dev is not set
 # CONFIG_libdrm-dbg is not set
-# CONFIG_libdrm-drivers is not set
+CONFIG_libdrm-drivers=y
 # CONFIG_libdrm-nouveau is not set
-# CONFIG_libdrm-tests is not set
+CONFIG_libdrm-tests=y
 # CONFIG_libdrm-freedreno is not set
 # CONFIG_libdrm-radeon is not set
 
@@ -3719,7 +3719,7 @@ CONFIG_u-boot-tools=y
 #
 # packagegroup-networking-stack 
 #
-# CONFIG_packagegroup-networking-stack is not set
+CONFIG_packagegroup-networking-stack=y
 # CONFIG_packagegroup-networking-stack-dbg is not set
 # CONFIG_packagegroup-networking-stack-dev is not set
 
@@ -3761,15 +3761,21 @@ CONFIG_imagefeature-ssh-server-openssh=y
 CONFIG_imagefeature-hwcodecs=y
 # CONFIG_imagefeature-package-management is not set
 # CONFIG_imagefeature-debug-tweaks is not set
-# CONFIG_imagefeature-empty-root-password is not set
-# CONFIG_imagefeature-serial-autologin-root is not set
+CONFIG_imagefeature-empty-root-password=y
+CONFIG_imagefeature-serial-autologin-root=y
 # CONFIG_Init-manager-systemd is not set
 CONFIG_Init-manager-sysvinit=y
 
 #
 # user packages 
 #
-# CONFIG_gpio-demo is not set
+CONFIG_clk-dglnt-dynclk=y
+CONFIG_digilent-hdmi=y
+CONFIG_fbtest=y
+CONFIG_flash-led=y
+CONFIG_gpio-demo=y
+CONFIG_gpm=y
+CONFIG_nano=y
 # CONFIG_peekpoke is not set
 
 #

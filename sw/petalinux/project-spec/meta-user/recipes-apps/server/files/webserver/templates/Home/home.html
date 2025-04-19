@@ -1,0 +1,17 @@
+{% extends "Default/default.html" %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="display-4"><b>{% block title %}Input Phrase{% endblock %}</b></h1>
+</div>
+
+<form action="/home.html" method="POST" enctype="multipart/form-data">
+    <label for="phrase">Input Phrase:</label>
+    <input type="text" id="phrase" name="phrase"><br><br>
+    <input type="submit" value="Submit">
+</form>
+<br><br>
+
+<h2>Input phrase: {{ output }}</h2>
+
+{% endblock %}
