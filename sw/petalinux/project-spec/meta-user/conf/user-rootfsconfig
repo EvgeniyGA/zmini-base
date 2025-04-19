@@ -9,4 +9,4 @@ CONFIG_flash-led
 CONFIG_fbtest
 CONFIG_nano
 CONFIG_gpm
-CONFIG_web-server
+CONFIG_server
