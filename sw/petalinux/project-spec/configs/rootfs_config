@@ -105,18 +105,18 @@ CONFIG_sudo=y
 #
 # e2fsprogs 
 #
-# CONFIG_e2fsprogs is not set
-# CONFIG_e2fsprogs-resize2fs is not set
-# CONFIG_e2fsprogs-badblocks is not set
-# CONFIG_e2fsprogs-e2fsck is not set
-# CONFIG_libss is not set
-# CONFIG_libcomerr is not set
-# CONFIG_libext2fs is not set
-# CONFIG_e2fsprogs-dev is not set
-# CONFIG_e2fsprogs-tune2fs is not set
-# CONFIG_libe2p is not set
+CONFIG_e2fsprogs=y
+CONFIG_e2fsprogs-resize2fs=y
+CONFIG_e2fsprogs-badblocks=y
+CONFIG_e2fsprogs-e2fsck=y
+CONFIG_libss=y
+CONFIG_libcomerr=y
+CONFIG_libext2fs=y
+CONFIG_e2fsprogs-dev=y
+CONFIG_e2fsprogs-tune2fs=y
+CONFIG_libe2p=y
 CONFIG_e2fsprogs-mke2fs=y
-# CONFIG_e2fsprogs-dbg is not set
+CONFIG_e2fsprogs-dbg=y
 
 #
 # ed 
@@ -2270,7 +2270,7 @@ CONFIG_ldd=y
 #
 # gstreamer1.0-plugins-bad 
 #
-# CONFIG_gstreamer1.0-plugins-bad is not set
+CONFIG_gstreamer1.0-plugins-bad=y
 # CONFIG_gstreamer1.0-plugins-bad-meta is not set
 # CONFIG_gstreamer1.0-plugins-bad-dev is not set
 # CONFIG_gstreamer1.0-plugins-bad-dbg is not set
@@ -2278,7 +2278,7 @@ CONFIG_ldd=y
 #
 # gstreamer1.0-plugins-base 
 #
-# CONFIG_gstreamer1.0-plugins-base is not set
+CONFIG_gstreamer1.0-plugins-base=y
 # CONFIG_gstreamer1.0-plugins-base-dev is not set
 # CONFIG_gstreamer1.0-plugins-base-apps is not set
 # CONFIG_gstreamer1.0-plugins-base-meta is not set
@@ -2287,7 +2287,7 @@ CONFIG_ldd=y
 #
 # gstreamer1.0-plugins-good 
 #
-# CONFIG_gstreamer1.0-plugins-good is not set
+CONFIG_gstreamer1.0-plugins-good=y
 # CONFIG_gstreamer1.0-plugins-good-meta is not set
 # CONFIG_gstreamer1.0-plugins-good-dev is not set
 # CONFIG_gstreamer1.0-plugins-good-dbg is not set
@@ -2517,7 +2517,7 @@ CONFIG_packagegroup-core-buildessential=y
 #
 # packagegroup-core-x11 
 #
-# CONFIG_packagegroup-core-x11 is not set
+CONFIG_packagegroup-core-x11=y
 # CONFIG_packagegroup-core-x11-dbg is not set
 # CONFIG_packagegroup-core-x11-utils-dbg is not set
 # CONFIG_packagegroup-core-x11-dev is not set
@@ -2534,7 +2534,7 @@ CONFIG_packagegroup-core-buildessential=y
 #
 # packagegroup-self-hosted 
 #
-# CONFIG_packagegroup-self-hosted is not set
+CONFIG_packagegroup-self-hosted=y
 # CONFIG_packagegroup-self-hosted-extended-dev is not set
 # CONFIG_packagegroup-self-hosted-debug-dev is not set
 # CONFIG_packagegroup-self-hosted-dev is not set
@@ -2970,14 +2970,14 @@ CONFIG_tcf-agent=y
 #
 # v4l-utils 
 #
-# CONFIG_v4l-utils is not set
-# CONFIG_libv4l is not set
+CONFIG_v4l-utils=y
+CONFIG_libv4l=y
 # CONFIG_ir-keytable is not set
-# CONFIG_v4l-utils-dev is not set
-# CONFIG_media-ctl is not set
+CONFIG_v4l-utils-dev=y
+CONFIG_media-ctl=y
 # CONFIG_rc-keymaps is not set
 # CONFIG_v4l-utils-dbg is not set
-# CONFIG_libv4l-dev is not set
+CONFIG_libv4l-dev=y
 
 #
 # valgrind 
@@ -3206,9 +3206,9 @@ CONFIG_tcf-agent=y
 #
 # gstreamer1.0 
 #
-# CONFIG_gstreamer1.0 is not set
-# CONFIG_gstreamer1.0-dev is not set
-# CONFIG_gstreamer1.0-dbg is not set
+CONFIG_gstreamer1.0=y
+CONFIG_gstreamer1.0-dev=y
+CONFIG_gstreamer1.0-dbg=y
 
 #
 # net 
@@ -3698,14 +3698,14 @@ CONFIG_libdrm-tests=y
 #
 # packagegroup-xilinx-audio 
 #
-# CONFIG_packagegroup-xilinx-audio is not set
+CONFIG_packagegroup-xilinx-audio=y
 # CONFIG_packagegroup-xilinx-audio-dbg is not set
 # CONFIG_packagegroup-xilinx-audio-dev is not set
 
 #
 # packagegroup-lmsensors 
 #
-# CONFIG_packagegroup-lmsensors is not set
+CONFIG_packagegroup-lmsensors=y
 # CONFIG_packagegroup-lmsensors-dbg is not set
 # CONFIG_packagegroup-lmsensors-dev is not set
 
@@ -3726,7 +3726,7 @@ CONFIG_packagegroup-networking-stack=y
 #
 # packagegroup-opencv 
 #
-# CONFIG_packagegroup-opencv is not set
+CONFIG_packagegroup-opencv=y
 # CONFIG_packagegroup-opencv-dbg is not set
 # CONFIG_packagegroup-opencv-dev is not set
 
@@ -3777,6 +3777,8 @@ CONFIG_gpio-demo=y
 CONFIG_gpm=y
 CONFIG_nano=y
 # CONFIG_peekpoke is not set
+CONFIG_server=y
+# CONFIG_webserver is not set
 
 #
 # PetaLinux RootFS Settings
