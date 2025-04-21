@@ -2,16 +2,19 @@
 {% block content %}
 
 <div class="page-header">
-    <h1 class="display-4"><b>{% block title %}Input Phrase{% endblock %}</b></h1>
+    <h1 class="display-4"><b>{% block title %}WEB-cam test page{% endblock %}</b></h1>
 </div>
 
-<form action="/home.html" method="POST" enctype="multipart/form-data">
-    <label for="phrase">Input Phrase:</label>
-    <input type="text" id="phrase" name="phrase"><br><br>
-    <input type="submit" value="Submit">
-</form>
-<br><br>
+<style>
+img.one{
+    height:100%;
+    width:100%;
+}
+</style>
 
-<h2>Input phrase: {{ output }}</h2>
+<img class="one" src="{{ url_for('static', filename='images/brd.png') }}" width="1000" height="1000"/>
+
+<p>(Refresh page to update image)</p>
+<img class="one" src="/static/images/{{imageName}}" width="375" height="225"/>
 
 {% endblock %}

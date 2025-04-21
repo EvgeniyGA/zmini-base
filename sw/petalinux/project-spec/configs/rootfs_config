@@ -2164,7 +2164,7 @@ CONFIG_libgpiod-dbg=y
 #
 # libudev 
 #
-# CONFIG_libudev is not set
+CONFIG_libudev=y
 CONFIG_udev-extraconf=y
 CONFIG_linux-xlnx-udev-rules=y
 
