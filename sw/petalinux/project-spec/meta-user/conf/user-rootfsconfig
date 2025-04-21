@@ -10,3 +10,4 @@ CONFIG_fbtest
 CONFIG_nano
 CONFIG_gpm
 CONFIG_server
+CONFIG_webserver
