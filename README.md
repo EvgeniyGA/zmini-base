@@ -3,11 +3,13 @@
 Contents: 
 Base Vivado and Petalinux project for demonstration:
 - [X] HDMI Output
-- [X] LCD Display (SPI)
-    - for test:
-        - cat /dev/urandom > /dev/fb1
+- [X] Add RTC (PCF8593)
+- [X] Add GPIOd kernel module
+    - setgpio 0 0=1
+- [X] LCD Display (ILI9341, SPI)
+    - cat /dev/urandom > /dev/fb1
 - [X] Simple WEB-server:
-    - [X] Add Python Flask as meta-layer
+    - [X] Add Python Flask as user-layer0
 - [ ] DPU for vitis Ai
 
 ## Hardware Requirements:
