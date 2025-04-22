@@ -10,6 +10,7 @@ Base Vivado and Petalinux project for demonstration:
     - cat /dev/urandom > /dev/fb1
 - [X] Simple WEB-server:
     - [X] Add Python Flask as user-layer0
+- [ ] config Kernel as external module
 - [ ] DPU for vitis Ai
 
 ## Hardware Requirements:
