@@ -6,6 +6,8 @@ Base Vivado and Petalinux project for demonstration:
 - [X] LCD Display (SPI)
     - for test:
         - cat /dev/urandom > /dev/fb1
+- [X] Simple WEB-server:
+    - [X] Add Python Flask as meta-layer
 - [ ] DPU for vitis Ai
 
 ## Hardware Requirements:
@@ -16,8 +18,10 @@ Base Vivado and Petalinux project for demonstration:
 - Vivado/Vitis 2024.2
 - Petalinux 2024.2
 
-## Compile BSP project:
+## Compile Project:
 ------
+Everything packages, scripts and files build in. Just 'make' it and flash *.wic file
+
 Compile everything: 
 ```bash
 make
