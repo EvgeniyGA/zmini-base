@@ -1,3 +1,6 @@
 [submodule "sw/petalinux/meta-openembedded"]
 	path = sw/petalinux/meta-openembedded
 	url = https://github.com/openembedded/meta-openembedded.git
+[submodule "sw/linux-xlnx"]
+	path = sw/linux-xlnx
+	url = https://github.com/Xilinx/linux-xlnx.git
