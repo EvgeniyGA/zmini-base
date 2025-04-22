@@ -2,11 +2,11 @@
 ------
 Contents: 
 Base Vivado and Petalinux project for demonstration:
-[X] HDMI Output
-[X] LCD Display (SPI)
+- [X] HDMI Output
+- [X] LCD Display (SPI)
     - for test:
         - cat /dev/urandom > /dev/fb1
-[ ] DPU for vitis Ai
+- [ ] DPU for vitis Ai
 
 ## Hardware Requirements:
 - Zynq Mini-20 Board
