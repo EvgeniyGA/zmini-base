@@ -1,23 +1,20 @@
-# Zynq-MINI-20 Base
-**Vivado Version: 2024.2**
+# Zynq-MINI-20 Base Project
 ------
 Contents: 
-Base project demonstrating access to LEDs and buttons from bare-metal and linux
-- Vi12er/Driver access
-- Vitis: FreeRTOS demonstrqwer
-- Linux: GPIO-Keys with device tree
+Base Vivado and Petalinux project for demonstration:
+[X] HDMI Output
+[X] LCD Display (SPI)
+    - for test:
+        - cat /dev/urandom > /dev/fb1
+[ ] DPU for vitis Ai
 
 ## Hardware Requirements:
-- Digilent Arty-Z7-20
-- MicroUSB Cable
-- SD Card
+- Zynq Mini-20 Board
 
 ## Software Requirements
-- Ubuntu 18.04 host system for compilation
+- Ubuntu 24.02 host system for compilation
 - Vivado/Vitis 2024.2
 - Petalinux 2024.2
-- Terminal program (TeraTerm or minicom)
-
 
 ## Compile BSP project:
 ------
@@ -31,25 +28,10 @@ Create and compile Vivado project:
 make fpga
 ```
 
-Create and compile Vitis bare metal project, create boot binary
-```bash
-make vitis
-```
-
 Create and compile petalinux project
 ```bash
 make petalinux
 ```
-
-Applying changes:
-------
-Vivado Block Design: From tcl shell:
-```bash
-write_bd_tcl [get_property DIRECTORY [current_project]]/../source/scripts/bd.tcl -include_layout -force
-```
-
-Software Design (Vitis): Put vitis source code under:
-* Put all files in ./vitis/src 
 
 BSP directory structure: 
 ------
