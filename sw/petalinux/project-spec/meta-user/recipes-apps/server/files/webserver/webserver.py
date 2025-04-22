@@ -1,6 +1,7 @@
 # MiniZed webserver script 
 import os
 import re
+import cv2
 import sys
 import glob
 import time
@@ -31,18 +32,41 @@ print(CUR_DIRECTORY)
 
 @app.route('/')
 @app.route('/home.html', methods=['GET','POST'])
+
 def home():
     if request.method == "POST":
-        phrase = request.form.get("phrase", None)
+        os.system('rm /usr/bin/webserver/static/images/single_frame*')
+        os.system('sudo gpioset 0 0=1')
 
-        if phrase!=None:
-            proc = subprocess.Popen('python3 /usr/bin/webserver/spell_phrase.py '+phrase+'' ,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell=True)
-            output,err = proc.communicate()
+        randNum = str(random.randrange(0, 32000, 1))
+        imageName = "single_frame"+randNum+".jpg"
 
-            return render_template("Home/home.html",output=output,phrase=phrase)
+        camera = cv2.VideoCapture(0)
+        (success,reference) = camera.read()
+        cv2.imwrite('/usr/bin/webserver/static/images/'+imageName+'',reference)
+        cv2.waitKey(1)
+        cv2.VideoCapture.release(camera)
+        cv2.waitKey(1)
+        cv2.destroyAllWindows()
+        cv2.waitKey(1)
 
-    phrase = None
-    return render_template("Home/home.html")
+        return render_template("Home/home.html", imageName=imageName)
+    else:
+        os.system('rm /usr/bin/webserver/static/images/single_frame*')
+
+        randNum = str(random.randrange(0, 32000, 1))
+        imageName = "single_frame"+randNum+".jpg"
+
+        camera = cv2.VideoCapture(0)
+        (success,reference) = camera.read()
+        cv2.imwrite('/usr/bin/webserver/static/images/'+imageName+'',reference)
+        cv2.waitKey(1)
+        cv2.VideoCapture.release(camera)
+        cv2.waitKey(1)
+        cv2.destroyAllWindows()
+        cv2.waitKey(1)
+
+        return render_template("Home/home.html", imageName=imageName)
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=80, threaded=True)
