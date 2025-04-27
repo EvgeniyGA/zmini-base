@@ -8,9 +8,10 @@ Base Vivado and Petalinux project for demonstration:
     - setgpio 0 0=1
 - [X] LCD Display (ILI9341, SPI)
     - cat /dev/urandom > /dev/fb1
+- [X] USB-WEB-Camera
 - [X] Simple WEB-server:
     - [X] Add Python Flask as user-layer0
-- [ ] config Kernel as external module
+- [X] config Kernel as external module
 - [ ] DPU for vitis Ai
 
 ## Hardware Requirements:
