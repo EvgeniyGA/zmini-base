@@ -19,8 +19,11 @@ set_property -dict {PACKAGE_PIN N20 IOSTANDARD LVCMOS33} [get_ports HDMI_DDC_scl
 set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports HDMI_DDC_sda_io]
 
 #I2C1
-set_property -dict {PACKAGE_PIN N18 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_scl_io]
-set_property -dict {PACKAGE_PIN T20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_sda_io]
+set_property -dict {PACKAGE_PIN F19 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_scl_io]
+set_property -dict {PACKAGE_PIN F20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_sda_io]
+
+#ONE_WIRE
+set_property -dict {PACKAGE_PIN U20 IOSTANDARD LVCMOS33} [get_ports {ONE_WIRE_tri_io[0]}]
 
 ### SPI_0 ##################################################
 #

@@ -2,8 +2,8 @@
 #include <dt-bindings/gpio/gpio.h>
 /* #include </home/rich/petalinux20242/rehsdZynq/xilinx-vip.h> */ /*this doesn't work!?*/
 / {
-    model = "rehsd Zynq-7000 Board";
-    compatible = "rehsd,zynq-7000", "xlnx,zynq-7000";
+    model = "zcraze Zynq-7000 Board";
+    compatible = "zcraze,zynq-7000", "xlnx,zynq-7000";
     chosen {
         bootargs = "console=ttyPS0,115200 earlycon root=/dev/mmcblk0p2 ro earlyprintk uio_pdrv_genirq.of_id=generic-uio";
     };
@@ -124,7 +124,12 @@
             default-state = "on";
         };
     };
-
+    onewire {
+	compatible = "w1-gpio";
+	pinctrl-names = "default";
+	gpios = <&gpio0 0 0> ;       
+	status = "okay";
+    };
 };
 &axi_vdma_0 {
     dma-ranges = <0x00000000 0x00000000 0x40000000>;
