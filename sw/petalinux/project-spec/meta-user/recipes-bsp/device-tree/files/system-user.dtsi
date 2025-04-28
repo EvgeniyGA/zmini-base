@@ -127,7 +127,8 @@
     onewire {
 	compatible = "w1-gpio";
 	pinctrl-names = "default";
-	gpios = <&gpio0 0 0> ;       
+	/*gpios = <&gpio0 0 0> ;*/
+	gpios = <&axi_gpio_one_wire 0 0> ;       
 	status = "okay";
     };
 };

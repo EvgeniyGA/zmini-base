@@ -223,6 +223,8 @@ proc create_root_design { parentCell } {
 
   set LCD_LED [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 LCD_LED ]
 
+  set ONE_WIRE [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 ONE_WIRE ]
+
 
   # Create ports
   set led [ create_bd_port -dir O -from 3 -to 0 led ]
@@ -520,7 +522,7 @@ proc create_root_design { parentCell } {
 
   # Create instance: axi_interconnect_0, and set properties
   set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
-  set_property CONFIG.NUM_MI {9} $axi_interconnect_0
+  set_property CONFIG.NUM_MI {10} $axi_interconnect_0
 
 
   # Create instance: axi_gpio_1, and set properties
@@ -645,11 +647,17 @@ proc create_root_design { parentCell } {
   ] $axi_gpio_lcd_led
 
 
+  # Create instance: axi_gpio_one_wire, and set properties
+  set axi_gpio_one_wire [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_one_wire ]
+  set_property CONFIG.C_GPIO_WIDTH {1} $axi_gpio_one_wire
+
+
   # Create interface connections
   connect_bd_intf_net -intf_net axi_gpio_hdmi_GPIO [get_bd_intf_ports HDMI_HPD] [get_bd_intf_pins axi_gpio_hdmi/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_lcd_dc_GPIO [get_bd_intf_ports LCD_DC] [get_bd_intf_pins axi_gpio_lcd_dc/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_lcd_led_GPIO [get_bd_intf_ports LCD_LED] [get_bd_intf_pins axi_gpio_lcd_led/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_lcd_reset_GPIO [get_bd_intf_ports LCD_RESET] [get_bd_intf_pins axi_gpio_lcd_reset/GPIO]
+  connect_bd_intf_net -intf_net axi_gpio_one_wire_GPIO [get_bd_intf_ports ONE_WIRE] [get_bd_intf_pins axi_gpio_one_wire/GPIO]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M01_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins axi_interconnect_0/M01_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M02_AXI [get_bd_intf_pins axi_interconnect_0/M02_AXI] [get_bd_intf_pins axi_dynclk_0/S_AXI_LITE]
@@ -659,6 +667,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_interconnect_0_M06_AXI [get_bd_intf_pins axi_interconnect_0/M06_AXI] [get_bd_intf_pins axi_gpio_lcd_dc/S_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M07_AXI [get_bd_intf_pins axi_interconnect_0/M07_AXI] [get_bd_intf_pins axi_gpio_lcd_reset/S_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M08_AXI [get_bd_intf_pins axi_interconnect_0/M08_AXI] [get_bd_intf_pins axi_gpio_lcd_led/S_AXI]
+  connect_bd_intf_net -intf_net axi_interconnect_0_M09_AXI [get_bd_intf_pins axi_interconnect_0/M09_AXI] [get_bd_intf_pins axi_gpio_one_wire/S_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_1_M00_AXI [get_bd_intf_pins axi_interconnect_1/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
   connect_bd_intf_net -intf_net axi_vdma_0_M_AXIS_MM2S [get_bd_intf_pins axi_vdma_0/M_AXIS_MM2S] [get_bd_intf_pins axis_subset_converter_0/S_AXIS]
   connect_bd_intf_net -intf_net axi_vdma_0_M_AXI_MM2S [get_bd_intf_pins axi_vdma_0/M_AXI_MM2S] [get_bd_intf_pins axi_interconnect_1/S00_AXI]
@@ -722,7 +731,9 @@ proc create_root_design { parentCell } {
   [get_bd_pins axi_gpio_lcd_reset/s_axi_aclk] \
   [get_bd_pins axi_interconnect_0/M07_ACLK] \
   [get_bd_pins axi_gpio_lcd_led/s_axi_aclk] \
-  [get_bd_pins axi_interconnect_0/M08_ACLK]
+  [get_bd_pins axi_interconnect_0/M08_ACLK] \
+  [get_bd_pins axi_gpio_one_wire/s_axi_aclk] \
+  [get_bd_pins axi_interconnect_0/M09_ACLK]
   connect_bd_net -net processing_system7_0_FCLK_CLK1  [get_bd_pins processing_system7_0/FCLK_CLK1] \
   [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] \
   [get_bd_pins axi_vdma_0/m_axi_mm2s_aclk] \
@@ -755,7 +766,9 @@ proc create_root_design { parentCell } {
   [get_bd_pins axi_gpio_lcd_reset/s_axi_aresetn] \
   [get_bd_pins axi_interconnect_0/M07_ARESETN] \
   [get_bd_pins axi_gpio_lcd_led/s_axi_aresetn] \
-  [get_bd_pins axi_interconnect_0/M08_ARESETN]
+  [get_bd_pins axi_interconnect_0/M08_ARESETN] \
+  [get_bd_pins axi_gpio_one_wire/s_axi_aresetn] \
+  [get_bd_pins axi_interconnect_0/M09_ARESETN]
   connect_bd_net -net v_axi4s_vid_out_0_vtg_ce  [get_bd_pins v_axi4s_vid_out_0/vtg_ce] \
   [get_bd_pins v_tc_0/gen_clken]
   connect_bd_net -net v_tc_0_irq  [get_bd_pins v_tc_0/irq] \
@@ -775,6 +788,7 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x41230000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_lcd_dc/S_AXI/Reg] -force
   assign_bd_address -offset 0x41250000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_lcd_led/S_AXI/Reg] -force
   assign_bd_address -offset 0x41240000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_lcd_reset/S_AXI/Reg] -force
+  assign_bd_address -offset 0x41260000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_one_wire/S_AXI/Reg] -force
   assign_bd_address -offset 0x43000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_vdma_0/S_AXI_LITE/Reg] -force
   assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs v_tc_0/ctrl/Reg] -force
   assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
