@@ -22,6 +22,12 @@ set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports HDMI_DDC_sda
 set_property -dict {PACKAGE_PIN F19 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_scl_io]
 set_property -dict {PACKAGE_PIN F20 IOSTANDARD LVCMOS33} [get_ports IIC_1_0_sda_io]
 
+#SPI1_OLED
+set_property -dict { PACKAGE_PIN E18 IOSTANDARD LVCMOS33 PULLUP false }    [get_ports { SPI1_SCLK_O_0 }];     # SPI Clock           W18
+set_property -dict { PACKAGE_PIN E19 IOSTANDARD LVCMOS33 PULLUP false }    [get_ports { SPI1_MOSI_O_0 }];     # MOSI
+set_property -dict { PACKAGE_PIN F17 IOSTANDARD LVCMOS33} [get_ports {OLED_RST_tri_o[0]}]
+set_property -dict { PACKAGE_PIN F16 IOSTANDARD LVCMOS33} [get_ports {OLED_DC_tri_o[0]}]
+
 #ONE_WIRE
 set_property -dict {PACKAGE_PIN U20 IOSTANDARD LVCMOS33} [get_ports {ONE_WIRE_tri_io[0]}]
 

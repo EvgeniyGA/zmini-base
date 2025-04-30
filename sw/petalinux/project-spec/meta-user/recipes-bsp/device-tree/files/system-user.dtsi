@@ -88,6 +88,29 @@
 	};
 };
 
+&spi1 {
+        is-decoded-cs = <0>;
+        num-cs = <1>;
+        bus-num = <0>;
+        status = "okay";
+        adafruit13m@0 {
+                reg = <0x0>;
+                compatible = "solomon,ssd1306";
+                reset-gpios = <&axi_gpio_oled_rst 0 GPIO_ACTIVE_LOW>;
+                dc-gpios = <&axi_gpio_oled_dc 0 GPIO_ACTIVE_HIGH>;
+        	buswidth = <0x8>;
+		width = <128>;
+		height = <64>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <63>;
+		segment-remap;
+		/*com-invdir;*/
+		prechargep = <0x22>;
+	};
+};
+
 &amba_pl {
     digilent_hdmi {
         compatible = "digilent,hdmi";
