@@ -13,6 +13,7 @@ Base Vivado and Petalinux project for demonstration:
     - [X] Add Python Flask as user-layer0
 - [X] config Kernel as external module
 - [ ] DPU for vitis Ai
+- [ ] siple QT Application
 
 ## Hardware Requirements:
 - Zynq Mini-20 Board
@@ -64,3 +65,5 @@ BSP directory structure:
     │   └── ws                  <--- Vitis workspace
     └── xsa                     <--- Hardware description file, exported by vivado
 ```
+![img](https://github.com/user-attachments/assets/1f177af7-43ed-4a02-8d97-c6a1ed5f7208)
+
